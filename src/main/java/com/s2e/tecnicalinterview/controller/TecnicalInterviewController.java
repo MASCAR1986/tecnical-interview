@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.s2e.tecnicalinterview.dto.AccountInfoResponse;
@@ -36,9 +37,16 @@ public class TecnicalInterviewController {
 	}
 	
 	@GetMapping(value = "/transaction", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<TransactionResponse> getTransaction(){
+	public ResponseEntity<TransactionResponse> getTransaction(
+			@RequestParam(name = "batched", required = false) boolean batched
+			){
 		
-		TransactionResponse result = service.getTransactionList();
+		TransactionResponse result;
+		
+		if(batched)
+			result = service.getSavedTransactionList();
+		else
+			result = service.getTransactionList();
 		
 		return ResponseEntity.ok().body(result);
 		

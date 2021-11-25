@@ -9,5 +9,6 @@ public interface ITecnicalInterviewService {
 	public AccountInfoResponse getAccountInfo();	
 	public BalanceResponse getBalance();
 	public TransactionResponse getTransactionList();
+	public TransactionResponse getSavedTransactionList();
 	
 }
