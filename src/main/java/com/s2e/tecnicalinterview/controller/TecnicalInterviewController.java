@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.s2e.tecnicalinterview.dto.AccountInfoResponse;
 import com.s2e.tecnicalinterview.dto.BalanceResponse;
+import com.s2e.tecnicalinterview.dto.PaymentResponse;
 import com.s2e.tecnicalinterview.dto.TransactionResponse;
 import com.s2e.tecnicalinterview.service.ITecnicalInterviewService;
 
@@ -47,6 +48,15 @@ public class TecnicalInterviewController {
 			result = service.getSavedTransactionList();
 		else
 			result = service.getTransactionList();
+		
+		return ResponseEntity.ok().body(result);
+		
+	}
+	
+	@GetMapping(value = "/payment", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<PaymentResponse> getPayment(){
+		
+		PaymentResponse result = service.sendPayment();
 		
 		return ResponseEntity.ok().body(result);
 		
