@@ -34,6 +34,10 @@ public class TecnicalInterviewServiceImpl implements ITecnicalInterviewService{
 	@Value("${proxy.api-key}")
 	private String apiKey;
 	
+	@Value("${proxy.x-time-zone}")
+	private String xTimeZone;
+	
+	
 	@Override
 	public AccountInfoResponse getAccountInfo() {
 
