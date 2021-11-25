@@ -181,14 +181,13 @@ public class TecnicalInterviewServiceImpl implements ITecnicalInterviewService{
 	
 		
 		ProxyResponse<PaymentProxyResponse> proxyResponse = proxyClient.addMoney(authSchema, apiKey, xTimeZone, accountId, mockPaymentRequest());
-		if(proxyResponse.getStatus().equalsIgnoreCase("KO")) {
-			
-			throw new PaymentException("Request failure: "+proxyResponse.getError().stream().collect(Collectors.joining(",")));
 		
-		}
+		if(proxyResponse.getStatus().equalsIgnoreCase("KO"))
+			throw new PaymentException(proxyResponse.getError().stream().collect(Collectors.joining(",")));
 		
+		PaymentProxyResponse paymentResponse = proxyResponse.getPayload();
 		
-		return null;
+		return new PaymentResponse(paymentResponse.getMoneyTransferId(), paymentResponse.getStatus(), paymentResponse.getDirection());
 	
 	}
 

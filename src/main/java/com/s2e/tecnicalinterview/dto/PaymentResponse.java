@@ -15,6 +15,22 @@ public class PaymentResponse implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	private String moneyTransferId;
+	private String status;
+	private String direction;
 	
+	public PaymentResponse(
+			String moneyTransferId, 
+			String status, 
+			String direction
+			) {
+		
+		super();
+		
+		this.moneyTransferId = moneyTransferId;
+		this.status = status;
+		this.direction = direction;
+		
+	}
 
 }
